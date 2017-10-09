@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import Mock
 
-from ..casino import cards
+from casino import cards
 
 
 class TestDeck(unittest.TestCase):
@@ -42,6 +43,81 @@ class TestBlackJackHand(unittest.TestCase):
         actual = hand.score
         expected = 21
         self.assertEqual(expected, actual)
+
+class TestPokerHand(unittest.TestCase):
+
+    def setUp(self):
+        self.cards = [Mock() for _ in range(5)]
+        self.hand = cards.PokerHand(self.cards)
+
+    def test_is_high_card(self):
+        ranks = ['2', '3', '5', '9', 'Q']
+        suits = ['D', 'D', 'H', 'H', 'S']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        [setattr(x, 'suit', y) for x, y in zip(self.cards, suits)]
+        self.assertTrue(self.hand.is_high_card)
+
+    def test_is_pair(self):
+        ranks = ['2', '2', '3', '5', '7']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_pair)
+
+    def test_is_two_pair(self):
+        ranks = ['2', '2', 'A', 'A', 'J']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_two_pair)
+
+    def test_is_three_kind(self):
+        ranks = ['2', '2', '2', '5', '7']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_three_kind)
+
+    def test_is_straight(self):
+        ranks = ['3', '4', '5', '6', '7']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_straight)
+
+    def test_is_straight_with_ace(self):
+        ranks = ['A', '2', '3', '4', '5']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_straight)
+
+    def test_is_flush_true(self):
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.assertTrue(self.hand.is_flush)
+        
+    def test_is_flush_false(self):
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.cards[0].suit = 'D'
+        self.assertFalse(self.hand.is_flush)
+
+    def test_is_flush_length(self):
+        # 5 cards are needed for a poker flush
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.cards.pop()
+        self.assertFalse(self.hand.is_flush)
+
+    def test_is_full_house(self):
+        ranks = ['3', '3', '3', 'J', 'J']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_full_house)
+
+    def test_is_four_kind(self):
+        ranks = ['A', 'A', 'A', 'A', 'K']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        self.assertTrue(self.hand.is_four_kind)
+
+    def test_is_straight_flush(self):
+        ranks = ['3', '4', '5', '6', '7']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.assertTrue(self.hand.is_straight_flush)
+
+    def test_is_royal_flush(self):
+        ranks = ['10', 'J', 'Q', 'K', 'A']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.assertTrue(self.hand.is_royal_flush)
 
 
 if __name__ == '__main__':
