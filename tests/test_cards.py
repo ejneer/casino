@@ -119,6 +119,15 @@ class TestPokerHand(unittest.TestCase):
         [setattr(x, 'suit', 'H') for x in self.cards]
         self.assertTrue(self.hand.is_royal_flush)
 
+    def test_hand_rank_returns_highest_ranking_hand(self):
+        # a full house is also a three of a kind and a pair.  The full house
+        # is the highest ranking hand of the three.
+        ranks = ['3', '3', '3', 'J', 'J']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+
+        # full house is 4th strongest hand
+        self.assertEqual(self.hand.hand_rank, 3)
+
 
 if __name__ == '__main__':
     unittest.main()

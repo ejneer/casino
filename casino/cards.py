@@ -105,6 +105,27 @@ class PokerHand(object):
 
     def __init__(self, cards):
         self.cards = cards
+        self.hand_order = (
+            # order of checks in hand determination
+            'royal_flush',
+            'four_kind',
+            'straight_flush',
+            'full_house',
+            'flush',
+            'straight',
+            'three_kind',
+            'two_pair',
+            'pair',
+            'high_card',
+        )
+
+    @property
+    def hand_rank(self):
+        hand = next(
+            hand for hand in self.hand_order
+            if getattr(self, 'is_' + hand)
+        )
+        return self.hand_order.index(hand)
 
     @property
     def suits(self):
