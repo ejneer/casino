@@ -5,7 +5,8 @@ import random
 from collections import namedtuple, Counter
 
 Card = namedtuple('Card', ('rank', 'suit'))
-CARDS = ('2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A')
+
+RANKS = ('2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A')
 SUITS = ('H', 'D', 'C', 'S')
 POKER_HANDS = {
     'HIGH_CARD': 0,
@@ -30,9 +31,8 @@ class Deck(object):
         self._idx = 0
 
     def _create_cards(self, num_decks):
-        card_suit_combos = itertools.product(
-            CARDS * num_decks, SUITS)
-        return list(Card(x[0], x[1]) for x in card_suit_combos)
+        card_suit_combos = itertools.product(RANKS * num_decks, SUITS)
+        return list(Card(rank, suit) for rank, suit in card_suit_combos)
 
     def __len__(self):
         return len(self.deck)
@@ -62,7 +62,7 @@ class BlackJackHand(object):
 
     CARD_VALUES = dict(
         zip(
-            CARDS,
+            RANKS,
             (*range(2, 11), 10, 10, 10, 11)  # 2-10, J, Q, K, A
         )
     )
@@ -116,7 +116,9 @@ class PokerHand(object):
 
     @property
     def is_high_card(self):
-        pass
+        return (not self.is_straight) \
+            and (not self.is_flush) \
+            and (len(set(self.ranks)) == 5)
 
     @property
     def is_pair(self):
@@ -137,7 +139,7 @@ class PokerHand(object):
             # order.
             return sorted(self.ranks) == ['2', '3', '4', '5', 'A']
         else:
-            rank_indices = [CARDS.index(x) for x in self.ranks]
+            rank_indices = [RANKS.index(x) for x in self.ranks]
             sub_length = max(rank_indices) - min(rank_indices)
             return self._all_unique_ranks() and sub_length == 4
 
