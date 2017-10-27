@@ -1,0 +1,76 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BlackJackHand	../casino\cards.py	/^class BlackJackHand(object):$/;"	kind:class	line:60
+CARDS	../casino\cards.py	/^CARDS = ('2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A')$/;"	kind:variable	line:8
+CARD_VALUES	../casino\cards.py	/^    CARD_VALUES = dict($/;"	kind:variable	line:63
+Card	../casino\cards.py	/^Card = namedtuple('Card', ('rank', 'suit'))$/;"	kind:variable	line:7
+Counter	../casino\cards.py	/^from collections import namedtuple, Counter$/;"	kind:namespace	line:5
+Deck	../casino\cards.py	/^class Deck(object):$/;"	kind:class	line:24
+Mock	../tests\test_cards.py	/^from unittest.mock import Mock$/;"	kind:namespace	line:2
+POKER_HANDS	../casino\cards.py	/^POKER_HANDS = {$/;"	kind:variable	line:10
+PokerHand	../casino\cards.py	/^class PokerHand(object):$/;"	kind:class	line:104
+SUITS	../casino\cards.py	/^SUITS = ('H', 'D', 'C', 'S')$/;"	kind:variable	line:9
+TestBlackJackHand	../tests\test_cards.py	/^class TestBlackJackHand(unittest.TestCase):$/;"	kind:class	line:29
+TestDeck	../tests\test_cards.py	/^class TestDeck(unittest.TestCase):$/;"	kind:class	line:7
+TestPokerHand	../tests\test_cards.py	/^class TestPokerHand(unittest.TestCase):$/;"	kind:class	line:47
+__ge__	../casino\cards.py	/^    def __ge__(self, other):$/;"	kind:member	line:82
+__gt__	../casino\cards.py	/^    def __gt__(self, other):$/;"	kind:member	line:76
+__init__	../casino\cards.py	/^    def __init__(self, cards):$/;"	kind:member	line:106
+__init__	../casino\cards.py	/^    def __init__(self, cards):$/;"	kind:member	line:70
+__init__	../casino\cards.py	/^    def __init__(self, num_decks=1):$/;"	kind:member	line:27
+__init__.py	../casino\__init__.py	1;"	kind:file	line:1
+__init__.py	../tests\__init__.py	1;"	kind:file	line:1
+__le__	../casino\cards.py	/^    def __le__(self, other):$/;"	kind:member	line:79
+__len__	../casino\cards.py	/^    def __len__(self):$/;"	kind:member	line:37
+__lt__	../casino\cards.py	/^    def __lt__(self, other):$/;"	kind:member	line:73
+_all_unique_ranks	../casino\cards.py	/^    def _all_unique_ranks(self):$/;"	kind:member	line:166
+_create_cards	../casino\cards.py	/^    def _create_cards(self, num_decks):$/;"	kind:member	line:32
+_handle_ace	../casino\cards.py	/^    def _handle_ace(self, current_hand_score):$/;"	kind:member	line:97
+cards	../tests\test_cards.py	/^from casino import cards$/;"	kind:namespace	line:4
+cards.py	../casino\cards.py	1;"	kind:file	line:1
+cards_remaining	../casino\cards.py	/^    def cards_remaining(self):$/;"	kind:member	line:55
+deal	../casino\cards.py	/^    def deal(self, num_cards=1):$/;"	kind:member	line:44
+is_flush	../casino\cards.py	/^    def is_flush(self):$/;"	kind:member	line:145
+is_four_kind	../casino\cards.py	/^    def is_four_kind(self):$/;"	kind:member	line:153
+is_full_house	../casino\cards.py	/^    def is_full_house(self):$/;"	kind:member	line:149
+is_high_card	../casino\cards.py	/^    def is_high_card(self):$/;"	kind:member	line:118
+is_pair	../casino\cards.py	/^    def is_pair(self):$/;"	kind:member	line:122
+is_royal_flush	../casino\cards.py	/^    def is_royal_flush(self):$/;"	kind:member	line:161
+is_straight	../casino\cards.py	/^    def is_straight(self):$/;"	kind:member	line:134
+is_straight_flush	../casino\cards.py	/^    def is_straight_flush(self):$/;"	kind:member	line:157
+is_three_kind	../casino\cards.py	/^    def is_three_kind(self):$/;"	kind:member	line:130
+is_two_pair	../casino\cards.py	/^    def is_two_pair(self):$/;"	kind:member	line:126
+itertools	../casino\cards.py	/^import itertools$/;"	kind:namespace	line:3
+namedtuple	../casino\cards.py	/^from collections import namedtuple, Counter$/;"	kind:namespace	line:5
+random	../casino\cards.py	/^import random$/;"	kind:namespace	line:4
+ranks	../casino\cards.py	/^    def ranks(self):$/;"	kind:member	line:114
+score	../casino\cards.py	/^    def score(self):$/;"	kind:member	line:86
+setUp	../tests\test_cards.py	/^    def setUp(self):$/;"	kind:member	line:49
+setUp	../tests\test_cards.py	/^    def setUp(self):$/;"	kind:member	line:8
+shuffle	../casino\cards.py	/^    def shuffle(self):$/;"	kind:member	line:40
+suits	../casino\cards.py	/^    def suits(self):$/;"	kind:member	line:110
+test_cards.py	../tests\test_cards.py	1;"	kind:file	line:1
+test_cards_remaining	../tests\test_cards.py	/^    def test_cards_remaining(self):$/;"	kind:member	line:20
+test_deal_cards_returned	../tests\test_cards.py	/^    def test_deal_cards_returned(self):$/;"	kind:member	line:15
+test_deck_multiplier	../tests\test_cards.py	/^    def test_deck_multiplier(self):$/;"	kind:member	line:11
+test_hand_score_no_aces	../tests\test_cards.py	/^    def test_hand_score_no_aces(self):$/;"	kind:member	line:31
+test_hand_score_with_aces	../tests\test_cards.py	/^    def test_hand_score_with_aces(self):$/;"	kind:member	line:38
+test_is_flush_false	../tests\test_cards.py	/^    def test_is_flush_false(self):$/;"	kind:member	line:89
+test_is_flush_length	../tests\test_cards.py	/^    def test_is_flush_length(self):$/;"	kind:member	line:94
+test_is_flush_true	../tests\test_cards.py	/^    def test_is_flush_true(self):$/;"	kind:member	line:85
+test_is_four_kind	../tests\test_cards.py	/^    def test_is_four_kind(self):$/;"	kind:member	line:105
+test_is_full_house	../tests\test_cards.py	/^    def test_is_full_house(self):$/;"	kind:member	line:100
+test_is_high_card	../tests\test_cards.py	/^    def test_is_high_card(self):$/;"	kind:member	line:53
+test_is_pair	../tests\test_cards.py	/^    def test_is_pair(self):$/;"	kind:member	line:60
+test_is_royal_flush	../tests\test_cards.py	/^    def test_is_royal_flush(self):$/;"	kind:member	line:116
+test_is_straight	../tests\test_cards.py	/^    def test_is_straight(self):$/;"	kind:member	line:75
+test_is_straight_flush	../tests\test_cards.py	/^    def test_is_straight_flush(self):$/;"	kind:member	line:110
+test_is_straight_with_ace	../tests\test_cards.py	/^    def test_is_straight_with_ace(self):$/;"	kind:member	line:80
+test_is_three_kind	../tests\test_cards.py	/^    def test_is_three_kind(self):$/;"	kind:member	line:70
+test_is_two_pair	../tests\test_cards.py	/^    def test_is_two_pair(self):$/;"	kind:member	line:65
+test_not_enough_cards_remaining	../tests\test_cards.py	/^    def test_not_enough_cards_remaining(self):$/;"	kind:member	line:24
+unittest	../tests\test_cards.py	/^import unittest$/;"	kind:namespace	line:1
