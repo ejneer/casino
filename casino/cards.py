@@ -119,8 +119,21 @@ class PokerHand(object):
             'high_card',
         )
 
+    def __lt__(self, other):
+        return self.hand_rank > other.hand_rank
+
+    def __gt__(self, other):
+        return self.hand_rank < other.hand_rank
+
+    def __le__(self, other):
+        return self.hand_rank >= other.hand_rank
+
+    def __ge__(self, other):
+        return self.hand_rank <= other.hand_rank
+
     @property
     def hand_rank(self):
+        # Returns the best (lowest) hand rank the cards in self.cards can make.
         hand = next(
             hand for hand in self.hand_order
             if getattr(self, 'is_' + hand)
