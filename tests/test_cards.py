@@ -44,6 +44,7 @@ class TestBlackJackHand(unittest.TestCase):
         expected = 21
         self.assertEqual(expected, actual)
 
+
 class TestPokerHand(unittest.TestCase):
 
     def setUp(self):
@@ -85,7 +86,7 @@ class TestPokerHand(unittest.TestCase):
     def test_is_flush_true(self):
         [setattr(x, 'suit', 'H') for x in self.cards]
         self.assertTrue(self.hand.is_flush)
-        
+
     def test_is_flush_false(self):
         [setattr(x, 'suit', 'H') for x in self.cards]
         self.cards[0].suit = 'D'
@@ -113,6 +114,12 @@ class TestPokerHand(unittest.TestCase):
         [setattr(x, 'suit', 'H') for x in self.cards]
         self.assertTrue(self.hand.is_straight_flush)
 
+    def test_is_straight_flush_with_ace(self):
+        ranks = ['A', '2', '3', '4', '5']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
+        [setattr(x, 'suit', 'H') for x in self.cards]
+        self.assertTrue(self.hand.is_straight_flush)
+
     def test_is_royal_flush(self):
         ranks = ['10', 'J', 'Q', 'K', 'A']
         [setattr(x, 'rank', y) for x, y in zip(self.cards, ranks)]
@@ -128,6 +135,40 @@ class TestPokerHand(unittest.TestCase):
         # full house is 4th strongest hand
         self.assertEqual(self.hand.hand_rank, 3)
 
+
+class TestHoldEmHand(unittest.TestCase):
+
+    def setUp(self):
+        self.cards = [Mock() for _ in range(2)]
+        self.community_cards = [Mock() for _ in range(5)]
+        self.hand = cards.HoldEmHand(self.cards, self.community_cards)
+
+    def test_best_hand_full_community_cards(self):
+        held_card_ranks = ['A', '2']
+        held_card_suits = ['D', 'D']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, held_card_ranks)]
+        [setattr(x, 'suit', y) for x, y in zip(self.cards, held_card_suits)]
+
+        community_card_ranks = ['2', '2', '3', '4', '5']
+        community_card_suits = ['H', 'C', 'D', 'D', 'D']
+        [setattr(x, 'rank', y)
+         for x, y in zip(self.community_cards, community_card_ranks)]
+        [setattr(x, 'suit', y)
+         for x, y in zip(self.community_cards, community_card_suits)]
+
+        # best hand should be a straight flush
+        self.assertEqual(self.hand.hand_rank, 2)
+
+    def test_best_hand_no_community_cards(self):
+        self.hand.community_cards = []
+
+        # we've got a pair
+        held_card_ranks = ['2', '2']
+        held_card_suits = ['H', 'D']
+        [setattr(x, 'rank', y) for x, y in zip(self.cards, held_card_ranks)]
+        [setattr(x, 'suit', y) for x, y in zip(self.cards, held_card_suits)]
+
+        self.assertEqual(self.hand.hand_rank, 8)
 
 if __name__ == '__main__':
     unittest.main()

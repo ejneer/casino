@@ -201,3 +201,26 @@ class PokerHand(object):
 
     def _all_unique_ranks(self):
         return len({*self.ranks}) == 5
+
+
+class HoldEmHand(PokerHand):
+
+    def __init__(self, cards, community_cards):
+        super(HoldEmHand, self).__init__(cards)
+        self.community_cards = community_cards
+
+    @property
+    def hand_rank(self):
+        '''
+        Make the best hand using the 2 cards held plus the 0 or 3 to 5
+        community cards.
+        '''
+        if self.community_cards:
+            best_rank = 1e6  # sentinel value
+            for card_combo in itertools.combinations(self.community_cards, 3):
+                cards = self.cards + list(card_combo)
+                current_rank = PokerHand(cards).hand_rank
+                best_rank = current_rank if current_rank < best_rank else best_rank
+            return best_rank
+        else:
+            return PokerHand(self.cards).hand_rank
