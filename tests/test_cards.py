@@ -135,6 +135,19 @@ class TestPokerHand(unittest.TestCase):
         # full house is 4th strongest hand
         self.assertEqual(self.hand.hand_rank, 3)
 
+    def test_equal_hands_different_cards(self):
+        cards1 = [Mock() for _ in range(5)]
+        cards2 = [Mock() for _ in range(5)]
+        hand1 = cards.PokerHand(cards1)
+        hand2 = cards.PokerHand(cards2)
+        ranks1 = ['3', '3', '3', 'J', 'J']
+        ranks2 = ['4', '4', '4', 'J', 'J']
+        [setattr(x, 'rank', y) for x, y in zip(cards1, ranks1)]
+        [setattr(x, 'rank', y) for x, y in zip(cards2, ranks2)]
+
+        # 4's full of jacks is better than 3's full
+        self.assertTrue(hand2 > hand1)
+
 
 class TestHoldEmHand(unittest.TestCase):
 
